@@ -1,0 +1,45 @@
+author: buzzsurfr
+description: 7-color LED controlled by AWS IoT
+# arch: PLATFORM
+version: 1.0
+manifest_version: 2017-05-18
+
+libs_version: ${mos.version}
+modules_version: ${mos.version}
+mongoose_os_version: ${mos.version}
+
+tags:
+  - js
+  - c
+  - cloud
+  - aws
+
+filesystem:
+  - fs
+
+libs:
+  # common mgos libs
+  - origin: https://github.com/mongoose-os-libs/boards
+  - origin: https://github.com/mongoose-os-libs/ca-bundle
+  - origin: https://github.com/mongoose-os-libs/i2c
+  - origin: https://github.com/mongoose-os-libs/rpc-service-config
+  - origin: https://github.com/mongoose-os-libs/rpc-service-fs
+  - origin: https://github.com/mongoose-os-libs/rpc-uart
+  - origin: https://github.com/mongoose-os-libs/spi
+
+  # libs necessary for the current app
+  - origin: https://github.com/mongoose-os-libs/aws
+  - origin: https://github.com/mongoose-os-libs/mjs
+  - origin: https://github.com/mongoose-os-libs/wifi
+
+config_schema:
+  - ["app", "o", {"title": "Application settings"}]
+  - ["app.color", "s", "white", {"title": "Color of the torch (red, yellow, green, cyan, blue, magenta, white)"}]
+  - ["app.state", "s", "off", {"title": "on/off state"}]
+  - ["gpio", "o", {"title": "GPIO/Pin settings"}]
+  - ["gpio.led", "o", {"title": "GPIO RGB LED pinout"}]
+  - ["gpio.led.r", "i", 14, {"title": "Pin for RED lead of RGB LED"}]
+  - ["gpio.led.g", "i", 12, {"title": "Pin for GREEN lead of RGB LED"}]
+  - ["gpio.led.b", "i", 13, {"title": "Pin for BLUE lead of RGB LED"}]
+  - ["gpio.button", "i", 4, {"title": "Pin for cycle button"}]
+  
